@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'moodlist.dart' ;
 
 void main() => runApp(MyApp());
 
@@ -21,30 +22,27 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>{
+  //ASSESTS --
+  var rowi =  new row_b() ;
+  bool  anonymous  = false  ;
+  String feedback = "" ;
   @override
   Widget build(BuildContext context) {
    return Scaffold(
+     backgroundColor: Colors.white ,
      body :
       CustomScrollView(
       slivers: [
-        SliverAppBar(
-          title: Text("ABOUT US") ,
-          snap: false,
-          //flexibleSpace: Image.asset('assets/Kanchenjunga_India.jpg' , fit : BoxFit.fill ,),
-          floating: true,
-          expandedHeight: 265 ,
-          centerTitle: true,
-          backgroundColor: Colors.black38,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context) ;
-            },
-            icon: Icon(Icons.arrow_back),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 69,
           ),
-        ),
-    ] ,
-    ) ,
-   )  ;
+        ) ,
+        SliverToBoxAdapter(
+            child :  rowi.get_widget()  ,
+        ) ,
+  ] ,) ,
+   ) ;
   }
 }
