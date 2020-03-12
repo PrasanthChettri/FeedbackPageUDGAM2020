@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'moodlist.dart' ;
+import 'feedbackstatement.dart' ;
 
 void main() => runApp(MyApp());
 
@@ -25,24 +26,29 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>{
   //ASSESTS --
   var rowi =  new row_b() ;
+  var feedi = new FeedbackField() ;
   bool  anonymous  = false  ;
   String feedback = "" ;
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-     backgroundColor: Colors.white ,
-     body :
-      CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: SizedBox(
-            height: 69,
-          ),
-        ) ,
-        SliverToBoxAdapter(
-            child :  rowi.get_widget()  ,
-        ) ,
-  ] ,) ,
+       backgroundColor: Colors.white ,
+       body :
+        CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 69,
+            ),
+          ) ,
+          SliverToBoxAdapter(
+              child :  rowi.get_widget()  ,
+          ) ,
+          SliverToBoxAdapter(
+              child: feedi.get_field(),
+          )
+        ] ,
+      ) ,
    ) ;
   }
 }
