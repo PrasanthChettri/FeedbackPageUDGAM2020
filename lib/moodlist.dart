@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart' ;
 //DATA STORAGE AND LAYOUT FOR MOODLIST
 class row_b {
-  //feedback({this.})
   var n_f = 3;
   var mood = [-1, -1, -1];
   var every_card =  [];
@@ -12,7 +11,7 @@ class row_b {
        IconButton(
           icon: Icon(Icons.assignment_return),
           onPressed: () {
-            mood[outer_index] = innerIndex;
+                    mood[outer_index] = innerIndex;
           }
     );
   }

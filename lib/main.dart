@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
 import 'moodlist.dart' ;
 import 'feedbackstatement.dart' ;
+import 'validator.dart' ;
+import 'radio.dart' ;
 
+
+/**
+ * import 'package:flutter/material.dart';
+    class AnonClass{
+    bool anon = false ;
+    static var context ;
+    static void get_context(BuildContext context){
+    AnonClass.context = context;
+    }
+    Widget get_widget(){
+
+    }
+    }
+ */
 void main() => runApp(MyApp());
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -27,9 +44,11 @@ class _MyHomePageState extends State<MyHomePage>{
   //ASSESTS --
   var rowi =  new row_b() ;
   var feedi = new FeedbackField() ;
-  bool  anonymous  = false  ;
-  String feedback = "" ;
+  var vali = new ValidClass() ;
+  bool anon  = false ;
   @override
+  void anonchange(bool value) => setState(() => anon = value);
+
   Widget build(BuildContext context) {
    return Scaffold(
        backgroundColor: Colors.white ,
@@ -46,7 +65,19 @@ class _MyHomePageState extends State<MyHomePage>{
           ) ,
           SliverToBoxAdapter(
               child: feedi.get_field(),
-          )
+          ) ,
+          SliverToBoxAdapter(
+            child :  new Checkbox(value: anon, onChanged: anonchange),
+
+          )  ,
+          SliverToBoxAdapter(
+            child : RaisedButton(
+              onPressed: (){
+                vali.ret_asset(rowi.mood , feedi.controller , anon);
+                vali.print_asset() ;
+              }
+            ) ,
+          ) ,
         ] ,
       ) ,
    ) ;
