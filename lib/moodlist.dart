@@ -10,7 +10,7 @@ class row_b {
           icon: Icon(mood_icons[innerIndex]),
           color: Colors.yellow[800],
           onPressed: () {
-                    mood = innerIndex;
+              mood = innerIndex;
           }
     );
   }

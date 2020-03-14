@@ -32,7 +32,6 @@ class _MyHomePageState extends State<MyHomePage>{
   var feedi = new FeedbackField() ;
   var vali = new ValidClass() ;
   var cc_ts = TextStyle(color : Colors.blue) ;
-  // ignore: non_constant_identifier_names
   bool  Login_trouble = false;
   bool Phone_Number = false;
   bool Personal_Profile = false;
@@ -78,15 +77,15 @@ class _MyHomePageState extends State<MyHomePage>{
           SliverToBoxAdapter(
             child : ret_check() ,
           ) ,
-          gap(69) ,
+          gap(60.9) ,
           SliverToBoxAdapter(
             child : feedi.get_field()  ,
           ) ,
-          gap(69) ,
+          gap(60.9) ,
           SliverToBoxAdapter(
             child :  rowi.get_widget()  ,
           ) ,
-          gap(69) ,
+          gap(60.9) ,
           SliverToBoxAdapter(
             child :  Center( child : Row(
               mainAxisSize: MainAxisSize.min,
@@ -111,23 +110,14 @@ class _MyHomePageState extends State<MyHomePage>{
             ) ,
           ) ,
           SliverToBoxAdapter(
-            child: Container(
-              height: 50,
-              child: Align(
+            child: Container(height: 50, child: Align(
                 alignment: Alignment.bottomCenter,
-                child : Text("UDGAM2020\n@NITSIKKIM" ,
-                  style: TextStyle(
-                    fontSize: 12 ,
-                    fontWeight: FontWeight.w200,
-                    color:  Colors.grey ,
-                  ),
-                ) ,
+                child : Text("UDGAM2020\n@NITSIKKIM" , style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200, color:  Colors.grey ,),) ,
               ) ,
             ),
           )
         ] ,
       ) ,
    ) ;
-
   }
 }
