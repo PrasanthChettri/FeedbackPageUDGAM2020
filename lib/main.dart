@@ -2,24 +2,9 @@ import 'package:flutter/material.dart';
 import 'moodlist.dart' ;
 import 'feedbackstatement.dart' ;
 import 'validator.dart' ;
-import 'radio.dart' ;
+import 'checkboxes.dart' ;
 
-
-/**
- * import 'package:flutter/material.dart';
-    class AnonClass{
-    bool anon = false ;
-    static var context ;
-    static void get_context(BuildContext context){
-    AnonClass.context = context;
-    }
-    Widget get_widget(){
-
-    }
-    }
- */
 void main() => runApp(MyApp());
-
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -42,9 +27,34 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>{
   //ASSESTS --
+  var checki  = new CheckClass() ;
   var rowi =  new row_b() ;
   var feedi = new FeedbackField() ;
   var vali = new ValidClass() ;
+  var cc_ts = TextStyle(color : Colors.blue) ;
+  // ignore: non_constant_identifier_names
+  bool  Login_trouble = false;
+  bool Phone_Number = false;
+  bool Personal_Profile = false;
+  bool Other_Isssue = false ;
+  bool Suggestions = false ;
+  void check_change_lt(bool value) =>setState((){Login_trouble = value;}) ;
+  void check_change_pn(bool value) => setState((){Phone_Number = value;}) ;
+  void check_change_pp(bool value) => setState((){Personal_Profile = value;}) ;
+  void check_change_ot(bool value) => setState((){ Other_Isssue= value;}) ;
+  void check_change_s(bool value) => setState((){  Suggestions = value;}) ;
+  Widget gap(double h) => SliverToBoxAdapter(child: SizedBox(height: h,),) ;
+  Widget ret_check(){
+    return Column(
+      children: <Widget>[
+        Row(children: <Widget>[Checkbox(value: Login_trouble, onChanged: check_change_lt) ,  Text( "Login Trouble" , style:  cc_ts,)]) ,
+        Row(children : [Checkbox(value: Phone_Number, onChanged: check_change_pn)   , Text("Phone Number", style:  cc_ts,)]),
+        Row(children : [Checkbox(value: Personal_Profile, onChanged: check_change_pp)  , Text("Personal Profile", style:  cc_ts,)  ]),
+        Row(children : [Checkbox(value: Other_Isssue, onChanged: check_change_ot)  , Text("Other Issues", style:  cc_ts,) ]),
+        Row(children : [Checkbox(value: Suggestions, onChanged: check_change_s) , Text("Suggestions", style:  cc_ts,)]),
+        ] ,
+      ) ;
+  }
   bool anon  = false ;
   @override
   void anonchange(bool value) => setState(() => anon = value);
@@ -55,31 +65,69 @@ class _MyHomePageState extends State<MyHomePage>{
        body :
         CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 69,
-            ),
+          SliverAppBar(
+            centerTitle: true,
+            title: Text("Feedback" , style: TextStyle(color: Colors.black),),
+            backgroundColor: Colors.white,
           ) ,
           SliverToBoxAdapter(
-              child :  rowi.get_widget()  ,
-          ) ,
+            child : SizedBox(height: 16.9,) ,
+          ),
+          SliverToBoxAdapter( child : Text("    Please select your feedback category" , style:  TextStyle(color: Colors.blueGrey),))  ,
+          gap(10) ,
           SliverToBoxAdapter(
-              child: feedi.get_field(),
+            child : ret_check() ,
           ) ,
+          gap(69) ,
           SliverToBoxAdapter(
-            child :  new Checkbox(value: anon, onChanged: anonchange),
-
+            child : feedi.get_field()  ,
+          ) ,
+          gap(69) ,
+          SliverToBoxAdapter(
+            child :  rowi.get_widget()  ,
+          ) ,
+          gap(69) ,
+          SliverToBoxAdapter(
+            child :  Center( child : Row(
+              mainAxisSize: MainAxisSize.min,
+              children : [ new Checkbox(value: anon, onChanged: anonchange), Text("Send in feedback Anonymous" , style: TextStyle(color: Colors.blueGrey),)] ,
+              ) ,
+            )
           )  ,
+          gap(10) ,
           SliverToBoxAdapter(
-            child : RaisedButton(
-              onPressed: (){
-                vali.ret_asset(rowi.mood , feedi.controller , anon);
-                vali.print_asset() ;
-              }
+            child : Column(children : [
+              MaterialButton(
+
+                padding: EdgeInsets.all(10),
+                color: Colors.blue,
+                child: Text("SEND" , style:  TextStyle(color: Colors.white),),
+                onPressed: (){
+                  vali.ret_asset(rowi.mood , feedi.controller , anon , [this.Login_trouble , this.Phone_Number , this.Personal_Profile , this.Other_Isssue , this.Suggestions]);
+                  vali.print_asset() ;
+                }
+            ) ,
+            ],
             ) ,
           ) ,
+          SliverToBoxAdapter(
+            child: Container(
+              height: 50,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child : Text("UDGAM2020\n@NITSIKKIM" ,
+                  style: TextStyle(
+                    fontSize: 12 ,
+                    fontWeight: FontWeight.w200,
+                    color:  Colors.grey ,
+                  ),
+                ) ,
+              ) ,
+            ),
+          )
         ] ,
       ) ,
    ) ;
+
   }
 }

@@ -2,52 +2,34 @@ import 'package:flutter/material.dart' ;
 //DATA STORAGE AND LAYOUT FOR MOODLIST
 class row_b {
   var n_f = 3;
-  var mood = [-1, -1, -1];
-  var every_card =  [];
-  var strings = ["Hospitality"  , "DA" ,"DA"];
-
-  Widget get_mood(int innerIndex, int outer_index) {
+  var mood_icons= [Icons.sentiment_very_satisfied , Icons.sentiment_satisfied , Icons.sentiment_neutral , Icons.sentiment_dissatisfied , Icons.sentiment_very_dissatisfied] ;
+  var mood  = -1;
+  Widget get_mood(int innerIndex) {
     return
        IconButton(
-          icon: Icon(Icons.assignment_return),
+          icon: Icon(mood_icons[innerIndex]),
+          color: Colors.yellow[800],
           onPressed: () {
-                    mood[outer_index] = innerIndex;
+                    mood = innerIndex;
           }
     );
   }
 
-  void make_card() {
-    for (int i = 0; i < this.n_f; i++) {
-      every_card.add(
-        Card (
-          child :
-              Column(
-                children : [
-                  Text(strings[i]) ,
-                  Row(
-                          mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                            get_mood(0, i), get_mood(1, i), get_mood(2, i),
-                          ],
-                      ) ,
-              ] ,
-                  )
-        )
-        ) ;
-    }
+  Widget get_card() {
+    return Card(
+      child : Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [get_mood(0), get_mood(1) , get_mood(2) , get_mood(3) ,get_mood(4)] ,
+      )
+    ) ;
   }
-
   Widget get_widget() {
-    make_card() ;
     return Column(
       children: <Widget>[
-        every_card[0] ,
-        every_card[1] ,
-        every_card[2] ,
+        Text("RATE US" , style: TextStyle(color: Colors.blueGrey),) ,
+        SizedBox(height: 10, ),
+        get_card()
       ],
     );
   }
 }
-/**Row(
-
-**/
