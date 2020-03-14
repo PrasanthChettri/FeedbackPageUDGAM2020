@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'moodlist.dart' ;
 import 'feedbackstatement.dart' ;
 import 'validator.dart' ;
-import 'checkboxes.dart' ;
 
 void main() => runApp(MyApp());
 
+//MAIN FILE HAS THE LAYOUT , ALL THE WIDGET ARE IN SEPERATE CLASSES AND THE VALIDATOR CLASS GETS ALL THE ASSETS
+//FORM THE CLASSES AFTER SENT BUTTON IS CLICKED
+//NOT MUCH TO LOOK HERE VALIDCLASS HAS ALL THE ASSET
+//GOTO : VALIDATOR.DART
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -27,18 +30,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>{
   //ASSESTS --
-  var checki  = new CheckClass() ;
   var rowi =  new row_b() ;
   var feedi = new FeedbackField() ;
   var vali = new ValidClass() ;
   var cc_ts = TextStyle(color : Colors.blue) ;
   bool  Login_trouble = false;
-  bool Phone_Number = false;
   bool Personal_Profile = false;
   bool Other_Isssue = false ;
   bool Suggestions = false ;
   void check_change_lt(bool value) =>setState((){Login_trouble = value;}) ;
-  void check_change_pn(bool value) => setState((){Phone_Number = value;}) ;
   void check_change_pp(bool value) => setState((){Personal_Profile = value;}) ;
   void check_change_ot(bool value) => setState((){ Other_Isssue= value;}) ;
   void check_change_s(bool value) => setState((){  Suggestions = value;}) ;
@@ -47,7 +47,6 @@ class _MyHomePageState extends State<MyHomePage>{
     return Column(
       children: <Widget>[
         Row(children: <Widget>[Checkbox(value: Login_trouble, onChanged: check_change_lt) ,  Text( "Login Trouble" , style:  cc_ts,)]) ,
-        Row(children : [Checkbox(value: Phone_Number, onChanged: check_change_pn)   , Text("Phone Number", style:  cc_ts,)]),
         Row(children : [Checkbox(value: Personal_Profile, onChanged: check_change_pp)  , Text("Personal Profile", style:  cc_ts,)  ]),
         Row(children : [Checkbox(value: Other_Isssue, onChanged: check_change_ot)  , Text("Other Issues", style:  cc_ts,) ]),
         Row(children : [Checkbox(value: Suggestions, onChanged: check_change_s) , Text("Suggestions", style:  cc_ts,)]),
@@ -102,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage>{
                 color: Colors.blue,
                 child: Text("SEND" , style:  TextStyle(color: Colors.white),),
                 onPressed: (){
-                  vali.ret_asset(rowi.mood , feedi.controller , anon , [this.Login_trouble , this.Phone_Number , this.Personal_Profile , this.Other_Isssue , this.Suggestions]);
+                  vali.ret_asset(rowi.mood , feedi.controller , anon , [this.Login_trouble , this.Personal_Profile , this.Other_Isssue , this.Suggestions]);
                   vali.print_asset() ;
                 }
             ) ,

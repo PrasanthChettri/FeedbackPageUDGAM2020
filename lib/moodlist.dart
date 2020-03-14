@@ -14,7 +14,6 @@ class row_b {
           }
     );
   }
-
   Widget get_card() {
     return Card(
       child : Row(
@@ -23,6 +22,7 @@ class row_b {
       )
     ) ;
   }
+
   Widget get_widget() {
     return Column(
       children: <Widget>[
