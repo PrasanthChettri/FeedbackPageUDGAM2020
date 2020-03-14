@@ -23,14 +23,18 @@ class ValidClass{
       'complain_type' : {'LoginTrouble'  :  complain_type[0] , 'Personal Profile': complain_type[1]  , 'Other Issues' : complain_type[2] , 'Suggestions' : complain_type[3]}  ,
     } ;
   }
-  void ret_asset(moodlist , textc , anon , List complain_type){
+  bool ret_asset(moodlist , textc , anon , List complain_type){
       this.moodlist = moodlist;
       this.text = textc.text;
       this.anon = anon ;
       this.complain_type  = complain_type ;
       //CHECKS IF THE FEEDBACK IS SENT MORE THAN 1 TIME , IF SO DON'T UPLOAD TO DB
-      this.spam  = true ;
+      bool temp = this.complain_type[0] || this.complain_type[1] || this.complain_type[2] || this.complain_type[3] ;
+      if(moodlist == -1&& this.text  == '' && !temp)
+        return false;
       build_map() ;
+      this.spam  = true ;
+      return true  ;
   }
   Map get_asset(){
     //ALL THE ASSETS ARE RETURNED FROM THIS FUNCION

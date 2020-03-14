@@ -104,12 +104,14 @@ class _MyHomePageState extends State<MyHomePage>{
                 color: Colors.blue,
                 child: Text("SEND" , style:  TextStyle(color: Colors.white),),
                 onPressed: (){
-                  vali.ret_asset(rowi.mood , feedi.controller , anon , [this.Login_trouble , this.Personal_Profile , this.Other_Isssue , this.Suggestions]);
-                  vali.print_asset() ;
-                  final snackBar = SnackBar(content: Text('Response Recorded.'));
-                  _scaffoldKey.currentState.showSnackBar(snackBar);
+                  String k = "Blank Response" ;
+                  if(vali.ret_asset(rowi.mood , feedi.controller , anon , [this.Login_trouble , this.Personal_Profile , this.Other_Isssue , this.Suggestions])){
+                    vali.print_asset() ;
+                    k = "Response Recorded" ;
+                  }
+                  _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(k),));
                 }
-            ) ,
+              ) ,
             ],
             ) ,
           ) ,
