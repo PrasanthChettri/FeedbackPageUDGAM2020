@@ -38,6 +38,8 @@ class _MyHomePageState extends State<MyHomePage>{
   bool Personal_Profile = false;
   bool Other_Isssue = false ;
   bool Suggestions = false ;
+  //HELPER FUNCTIONS
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   void check_change_lt(bool value) =>setState((){Login_trouble = value;}) ;
   void check_change_pp(bool value) => setState((){Personal_Profile = value;}) ;
   void check_change_ot(bool value) => setState((){ Other_Isssue= value;}) ;
@@ -60,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage>{
   Widget build(BuildContext context) {
    return Scaffold(
        backgroundColor: Colors.white ,
+       key : _scaffoldKey  ,
        body :
         CustomScrollView(
         slivers: [
@@ -103,6 +106,8 @@ class _MyHomePageState extends State<MyHomePage>{
                 onPressed: (){
                   vali.ret_asset(rowi.mood , feedi.controller , anon , [this.Login_trouble , this.Personal_Profile , this.Other_Isssue , this.Suggestions]);
                   vali.print_asset() ;
+                  final snackBar = SnackBar(content: Text('Response Recorded.'));
+                  _scaffoldKey.currentState.showSnackBar(snackBar);
                 }
             ) ,
             ],
